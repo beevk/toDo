@@ -19,18 +19,20 @@
 		}
 
 		public function loginUser($username, $password) {
-			$sql = $this->link->query("SELECT * FROM users WHERE username = $username AND password = $password");
+			$sql = $this->link->prepare("SELECT * FROM users WHERE username = ? AND password = ?");
+			$sql->execute([$username, $password]);
 			$rowCount = $sql->rowCount();
 
 			return $rowCount;
 		}
 
 		public function getUserInfo($username) {
-			$sql = $this->link->query("SELECT * FROM users WHERE username = $username");
+			$sql = $this->link->prepare("SELECT * FROM users WHERE username = ?");
+			$sql->execute([$username]);
 			$count = $sql->rowCount();
 
 			if($count == 1) {
-				$result = $sql->fetchAll();
+				$result = $sql->fetch();
 				return $result;
 			}
 			else {
