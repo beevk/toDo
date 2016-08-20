@@ -11,11 +11,18 @@
 		}
 
 		public function registerUser($username,$email, $password, $ipAddress, $date, $time) {
-			$sql = $this->link->prepare("INSERT INTO users (`username`, `email`, `password`, `ip_address`, `reg_date`, `reg_time`) VALUES (?, ?, ?, ?, ?, ?);");
-			$values = array($username, $email, $password, $ipAddress, $date, $time);
-			$sql->execute($values);
-			$count = $sql->rowCount();
-			return $count;
+			try{
+				$sql = $this->link->prepare("INSERT INTO users (username, email, password, ip_address, reg_date, reg_time) VALUES (?, ?, ?, ?, ?, ?);");
+				$values = array($username, $email, $password, $ipAddress, $date, $time);
+				$sql->execute($values);
+				$count = $sql->rowCount();
+				//echo $count;
+				return $count;
+
+			}
+			catch(Exception $e) {
+				echo $e->getMessage();
+			}
 		}
 
 		public function loginUser($username, $password) {
@@ -41,6 +48,6 @@
 		}
 	}
 	
-	$users = new manageUsers();
+	//$users = new manageUsers();
 	//echo $users->registerUsers('bob', 'honeyhive', '127.0.0.1', '29-02-2016', '16:21');
  ?>
