@@ -3,8 +3,9 @@
  ?>
 
 <!DOCTYPE html>
- <html>
+ <html lang="en">
  <head>
+ 	<meta charset="utf-8">
  	<title>ToDo Maker</title>
  	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
  	<link rel="stylesheet" type="text/css" href="css/style.css">

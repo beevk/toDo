@@ -5,3 +5,24 @@
 div.register-form {
 	display : none;
 }
+#sidebar-wrapper {
+	float: left;
+	width: 18%;
+	background: #f7f7f7;
+}
+#mainContent {
+	float: right;
+	width: 80%;
+}
+#mainContent #head{
+	background: #f7f7f7;
+	border-bottom: 1px solid #ccc;
+	font-size: 14px;
+	padding: 5px;
+}
+#mainContent #head h2{
+	float: left;
+}
+#mainContent #head #add_more{
+	float: right;
+}
