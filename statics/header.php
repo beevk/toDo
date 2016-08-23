@@ -25,7 +25,7 @@
             });
             $( "#seekbar" ).slider({
                 range: "max",
-                min: 1,
+                min: 0,
                 max: 100,
                 value: 2,
                 slide: function( event, ui ) {

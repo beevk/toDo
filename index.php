@@ -1,6 +1,15 @@
 <?php 
     require_once "statics/header.php";
     require_once "libs/listToDo.php";
+    require_once "delete.php";
+
+    if(isset($deleted)) {
+        echo "<div class='alert alert-success'> <strong>Success! </strong>" . $deleted . "</div>";
+    }
+    if(isset($delError)) {
+        echo "<div class='alert alert-danger'> <strong>Sorry! </strong>" . $delError . "</div>";
+    }
+
 ?>
     <nav class="navbar navbar-default">
         <div class="container-fluid">
