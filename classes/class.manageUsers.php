@@ -39,7 +39,7 @@
 			$count = $sql->rowCount();
 
 			if($count == 1) {
-				$result = $sql->fetch();
+				$result = $sql->fetch(PDO::FETCH_ASSOC);
 				return $result;
 			}
 			else {

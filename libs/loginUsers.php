@@ -35,8 +35,8 @@
 					$makeSession = $user->getUserInfo($username);
 					//create session if user registers successfully
 					foreach ($makeSession as $userSession) {
-						$_SESSION['toDoName'] = $userSession['username'];
-						if($_SESSION['toDoName']) {
+						$_SESSION['username'] = $userSession['username'];
+						if($_SESSION['username']) {
 							header('Location: index.php');
 						}
 					}
@@ -65,14 +65,11 @@
 			$authUser = $login->loginUser($username, $password);
 
 			if($authUser == 1) {
-				//echo "Awesome!";
 				$makeSession = $login->getUserInfo($username);
 				//create session if user registers successfully
-				foreach ($makeSession as $userSession) {
-					$_SESSION['toDoName'] = $userSession['username'];
-					if($_SESSION['toDoName']) {
-						header('Location: index.php');
-					}
+				$_SESSION['username'] = $makeSession['username'];
+				if($_SESSION['username']) {
+					header('Location: index.php');
 				}
 			}
 			else {

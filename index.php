@@ -1,66 +1,91 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>Home of ToDo</title>
-	<title>ToDo Maker</title>
- 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
- 	<link rel="stylesheet" type="text/css" href="css/style.css">
- 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
- 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-<body>
-	<div id="wrapper">
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper" class="table-responsive">
-            <table class="table table-hover">
-                <tr>
-                    <td><a href="#"><i class="glyphicon glyphicon-home"></i>Manage your To-Do</a></td>
-                </tr>
-                <tr>
-                    <td><a href="#"><i class="glyphicon glyphicon-inbox"></i>Inbox</a></td>
-                </tr>
-                <tr>>
-                    <td><a href="#"><i class="glyphicon glyphicon-repeat"></i>Read Later</a></td>
-                </tr>
-                <tr>
-                    <td><a href="#"><i class="glyphicon glyphicon-lock"></i>Important</a></td>
-                </tr>
-            </table>
-        </div><!-- sidebar-wrapper ends -->
+<?php 
+    require_once "statics/header.php";
+    require_once "libs/listToDo.php";
+?>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+    		    <li class="active"><h3> &nbsp;&nbsp;Manage To-Do</h3></li>
+    		</ul>
+    		<ul class="nav navbar-nav navbar-right">
+            	<li><a href="addNew.php" class="btn btn-success"> + Add New </a></li>
+            </ul>
+        </div>
+    </nav><!-- End head -->
+    <br>
 
-        <div id="mainContent" class="clearFix">
-    		<div id="head">
-    			<h2> Manage To-Do </h2>
-    			<div id="add_more">
-    				<a href="addNew.php" class="btn btn-success"> + Add New </a>
-    			</div><!-- End add_more -->
-    		</div><!-- End head -->
+    <div id="mainBody">
+	<table class="table table-striped table-responsive">
+	    <thead>
+	      <tr>
+	        <td>Title</td>
+	        <td>Snippet</td>
+	        <td>Due Date</td>
+	        <td>Time Left</td>
+	        <td>Progress</td>
+            <td>Action</td>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      
+	        <?php 
+                if($list !=  0){
+                    foreach ($list as $key => $value) { 
+                        $today = strtotime('now');
+                        $due = strtotime($value['dueDate']);
+                        if($due > $today) {
+                            $hours = ($due - $today) / 3600;
+                            $timeLeft = $hours / 24;
+                            $timeLeft = number_format($timeLeft, 2, '.', '');
+                            if($timeLeft < 1) {
+                                $timeLeft = "Less than a day";
+                            }
+                            else {
+                                $timeLeft = "{$timeLeft} days";
+                            }
+                        }
+                        else {
+                            $timeLeft = "Expired!";
+                        }
+                        ?>
+                        <tr>
+                            <td> <?php echo $value['title']; ?></td>
+                            <td> <?php echo $value['description']; ?></td>
+                            <td> <?php echo $value['dueDate']; ?></td>
+                            <td> <?php echo $timeLeft; ?></td>
 
-    		<div id="mainBody">
-    			<table class="table table-striped">
-				    <thead>
-				      <tr>
-				        <th>Title</th>
-				        <th>Snippet</th>
-				        <th>Due Date</th>
-				        <th>Time Left</th>
-				        <th>Progress</th>
-				      </tr>
-				    </thead>
-				    <tbody>
-				      <tr>
-				        <td>John</td>
-				        <td>Doe</td>
-				        <td>john@example.com</td>
-				      </tr>
-				      
-				    </tbody>
-				</table>
+                            <td><div class = "progress"> 
+                                <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $value['progress']; ?>"
+                                    aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $value['progress'];?>%">
+                                    <span class="sr-only"><?php echo $value['progress'];?>% Complete</span>
+                                </div>
+                                </div>
+                            </td>
+
+                            <td> Edit   |   Delete </td>
+                        </tr>
+            
+                 <?php
+                    }
+                }
+                else { ?>
+                    <tr>
+                        <td><td><td><td><td>Sorry! No more To-Do Under this section.</td></td></td></td></td>
+                    </tr>
+                <?php }
+            ?>
+	      </tr>
+	      
+	    </tbody>
+	</table>
     				
-    		</div><!-- End mainBody -->
-    	</div>
-    </div><!-- Wrapper ends-->
-    
+		</div><!-- End mainBody -->
+	</div>
+</div><!-- Wrapper ends-->
+
+    <!--footer class="container-fluid">
+        <p>Footer Text</p>
+    </footer-->
+
 </body>
 </html>

@@ -7,46 +7,58 @@
 		public function __construct() {
 			$dbConnection = new dbConnection();
 			$this->link = $dbConnection->connect();
+			//echo "connected!";
 			return $this->link;
 		}
 
-		public function createToDo($username, $title, $description, $dueDate, $createdOn, $status) {
-			$sql = "INSERT INTO todo (`username`, `title`, `desc`, `due_date`, `created_date`, `status`) VALUES (?, ?, ?, ?, ?, ?)";
+		public function createToDo($username, $title, $description, $dueDate, $createdOn, $label) {
+			$sql = "INSERT INTO todo (username, title, description, dueDate, createdDate, label) VALUES (?, ?, ?, ?, ?, ?)";
 			$query = $this->link->prepare($sql);
-			$values = array($username, $title, $description, $dueDate, $createdOn, $status);
+			$values = array($username, $title, $description, $dueDate, $createdOn, $label);
 			$query->execute($values);
 			$count = $query->rowCount();
+			//print_r($query);
 			return $count;
 		}
 
-		public function listToDo($username, $status) {
-			$sql = "SELECT * FROM todo WHERE username = ? AND status = ?";
+		public function listToDo($username, $label = null) {
+			if(isset($label)) {
+				$sql = "SELECT * FROM todo WHERE username = ? AND label = ? ORDER BY id DESC";
+				$var = array($username, $label);
+			}
+			else {
+				$sql = "SELECT * FROM todo WHERE username = ? ORDER BY id DESC";	
+				$var = array($username);
+			}
 			$query = $this->link->prepare($sql);
-			$query->execute([$username, $status]);
+			$query->execute($var);
 			$count = $query->rowCount();
 
 			if($count >= 1) {
 				$result = $query->fetchAll();
+				//print_r($result);
 			}
 			else {
-				$result = $result;
+				$result = "";
 			}
+			return $result;
 		}
 
-		public function countToDo($username, $status) {
-			$sql = "SELECT count(*) AS TOTAL FROM todo WHERE username = ? AND status = ?";
+		public function countToDo($username, $label) {
+			$sql = "SELECT count(*) AS TOTAL FROM todo WHERE username = ? AND label = ?";
 			$query = $this->link->prepare($sql);
-			$query->execute([$username, $status]);
+			$query->execute([$username, $label]);
 			//Fetches o/p as an object
 			$query->setFetchMode(PDO::FETCH_OBJ);
 			$count = $query->fetchAll();
 			return $count;
 		}
 
-		public function editToDo($username, $id, $values = array()) {
+		public function editToDo($username, $id, $values) {
 			$x = 0;
 			foreach ($values as $key => $value) {
-				$query = $this->link->query->("UPDATE todo SET $key = '$value' WHERE username = '$username' and id = '$id'");
+				$query = $this->link->prepare("UPDATE todo SET $key = ? WHERE username = ? and id = ?");
+				$query->execute([$value, $username, $id]);
 				$x++;
 			}
 			return $x;
@@ -58,3 +70,4 @@
 			$count = $query->rowCount();
 			return $count;
 		}
+	}

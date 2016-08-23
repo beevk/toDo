@@ -5,24 +5,32 @@
 div.register-form {
 	display : none;
 }
-#sidebar-wrapper {
-	float: left;
-	width: 18%;
-	background: #f7f7f7;
+#move {
+	margin-left: -10px;
 }
-#mainContent {
-	float: right;
-	width: 80%;
+ /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+
+.row.content {
+	height: 1500px;
 }
-#mainContent #head{
-	background: #f7f7f7;
-	border-bottom: 1px solid #ccc;
-	font-size: 14px;
-	padding: 5px;
+/* Set gray background color and 100% height */
+.sidenav {
+    background-color: #f1f1f1;
+    height: 100%;
 }
-#mainContent #head h2{
-	float: left;
+/* Set black background color, white text and some padding */
+footer {
+	background-color: #555;
+	color: white;
+	padding: 15px;
 }
-#mainContent #head #add_more{
-	float: right;
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+      .sidenav {
+        	height: auto;
+        	padding: 15px;
+      	}
+    .row.content {
+    	height: auto;
+    }
 }
