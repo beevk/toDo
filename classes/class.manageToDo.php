@@ -70,4 +70,19 @@
 			$count = $query->rowCount();
 			return $count;
 		}
+
+		public function listIndividual ($username, $param) {
+			foreach ($param as $key => $value) {
+				$query = $this->link->query("SELECT * from todo WHERE $key = '$value' AND username = '$username' LIMIT 1");
+
+			}
+			$count = $query->rowCount();
+			if($count == 1) {
+				$result = $query->fetch();
+			}
+			else {
+				$result = $count;
+			}
+			return $result;
+		}
 	}

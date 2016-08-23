@@ -62,7 +62,9 @@
                                 </div>
                             </td>
 
-                            <td> Edit   |   Delete </td>
+                            <td><a href="edit.php?id=<?php echo $value['id'];?>"><span class="glyphicon glyphicon-edit"></span> Edit</a> 
+                                || <a href="index.php?delete=<?php echo $value['id'];?>"> <span class="glyphicon glyphicon-trash"></span> Delete</a>
+                            </td>
                         </tr>
             
                  <?php
