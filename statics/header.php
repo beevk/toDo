@@ -23,7 +23,20 @@
                 changeMonth: true,
                 changeYear: true
             });
+            $( "#seekbar" ).slider({
+                range: "max",
+                min: 1,
+                max: 100,
+                value: 2,
+                slide: function( event, ui ) {
+                    $( "#progress" ).html( ui.value + '%');
+                    $( "#progressValue" ).val( ui.value );
+                }
+            });
+            $( "#progress" ).val( $( "#seekbar" ).slider( "value" ) );
         } );
+
+  </script>
   </script>
 </head>
 <body>

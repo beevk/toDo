@@ -73,7 +73,7 @@
 
 		public function listIndividual ($username, $param) {
 			foreach ($param as $key => $value) {
-				$query = $this->link->query("SELECT * from todo WHERE $key = '$value' AND username = '$username' LIMIT 1");
+				$query = $this->link->query("SELECT * from todo WHERE $key = '$value' LIMIT 1");
 
 			}
 			$count = $query->rowCount();
