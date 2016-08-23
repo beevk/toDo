@@ -57,11 +57,7 @@
 			  	<div class="form-group">
 			    	<label for="password">Password:</label>
 			    	<input type="password" class="form-control" id="password" name="loginPassword">
-			  	</div>
-			  	<div class="checkbox">
-			    	<label><input type="checkbox" name="remember"> Remember me</label>
-			  	</div>
-
+			  	</div>			
 				<button type="submit" class="btn btn-primary" name="login" id="login">Login</button>
 
 				<br /><br />
