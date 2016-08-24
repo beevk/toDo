@@ -53,6 +53,9 @@
             </div>
 
             <div class="col-sm-10">
-                <h3>Welcome <?php echo $_SESSION['username'] . '!';?></h3>
+                <div id="upper">
+                    <h3>Welcome <?php echo $_SESSION['username'] . '!';?></h3>
+                    <a href="logout.php" class="btn btn-info" role="button" id="logout">Logout</a>
+                </div>
                 <hr>
  
