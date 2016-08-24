@@ -46,7 +46,7 @@
             <div class="col-sm-2 sidenav">
                 <a class="brand" href="index.php"><h2>To-Do Maker</h2></a><br>
                 <ul class="nav nav-pills nav-stacked">
-                    <li class="active"><a href="index.php"><span class="glyphicon glyphicon-th-list"> All</span></a></li>
+                    <li><a href="index.php"><span class="glyphicon glyphicon-th-list"> All</span></a></li>
                     <li><a href="index.php?label=Important"><span class="glyphicon glyphicon-pencil"></span> &nbsp;&nbsp;Important</a></li>
                     <li><a href="index.php?label=ReadLater"><span class="glyphicon glyphicon-send"></span> &nbsp;&nbsp;Read Later</a></li>
                     <li><a href="index.php?label=Inbox"><span class="glyphicon glyphicon-inbox"> Inbox</span></a></li>
@@ -56,7 +56,7 @@
             <div class="col-sm-10">
                 <div id="upper">
                     <h3>Welcome <?php echo $_SESSION['username'] . '!';?></h3>
-                    <a href="logout.php" class="btn btn-info" role="button" id="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                    <a href="logout.php" class="btn btn-info" role="button" id="logout"><span class="glyphicon glyphicon-log-out"></span>Logout</a>
                 </div>
                 <hr>
  
