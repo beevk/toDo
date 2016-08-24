@@ -1,6 +1,7 @@
 <?php 
 	require_once "statics/header.php";
 	require_once "libs/listToDo.php";
+	require_once "libs/editToDo.php";
 
  ?>
 
@@ -10,7 +11,7 @@
 	</div>
 
 	<div id="mainBody">
-		<form method="post" action="">
+		<form method="post" action="edit.php?id=<?php echo $_GET['id'];?>">
 			<?php 
 				if(isset($err)) {
 					echo "<div class='alert alert-danger'> <strong> Error! </strong>" . $err . "</div>";

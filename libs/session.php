@@ -1,7 +1,7 @@
 <?php 
 	session_start();
-	if($_SESSION['toDoName']) {
-		$sessionName = $_SESSION['toDoName'];
+	if($_SESSION['username']) {
+		$sessionName = $_SESSION['username'];
 	}
 	else{
 		header('Location: login.php');

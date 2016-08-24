@@ -52,7 +52,7 @@
 			<form method="post" action="login.php" id="center">
 				<div class="form-group">
 			    	<label for="username">Username:</label>
-			    	<input type="text" class="form-control" id="username" name="loginUsername">
+			    	<input type="text" class="form-control" id="username" name="loginUsername" autofocus>
 			  	</div>
 			  	<div class="form-group">
 			    	<label for="password">Password:</label>
@@ -70,7 +70,7 @@
 			<form method="post" action="login.php" id="center">
 				<div class="form-group">
 			    	<label for="username">Username:</label>
-			    	<input type="text" class="form-control" id="username" name="username">
+			    	<input type="text" class="form-control" id="username" name="username" autofocus>
 			  	</div>
 				<div class="form-group">
 			    	<label for="email">Email address:</label>

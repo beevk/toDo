@@ -18,6 +18,7 @@
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
     <script>
         $( function() {
+            var currentVal = $( "#progress" ).val();
             $( "#due_date" ).datepicker({
                 dateFormat: "yy-mm-dd",
                 changeMonth: true,
@@ -27,13 +28,13 @@
                 range: "max",
                 min: 0,
                 max: 100,
-                value: 2,
+                value: currentVal,
                 slide: function( event, ui ) {
                     $( "#progress" ).html( ui.value + '%');
                     $( "#progressValue" ).val( ui.value );
                 }
             });
-            $( "#progress" ).val( $( "#seekbar" ).slider( "value" ) );
+            //$( "#progress" ).val( $( "#seekbar" ).slider( "value" ) );
         } );
 
   </script>
@@ -55,7 +56,7 @@
             <div class="col-sm-10">
                 <div id="upper">
                     <h3>Welcome <?php echo $_SESSION['username'] . '!';?></h3>
-                    <a href="logout.php" class="btn btn-info" role="button" id="logout">Logout</a>
+                    <a href="logout.php" class="btn btn-info" role="button" id="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
                 </div>
                 <hr>
  

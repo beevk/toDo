@@ -54,14 +54,12 @@
 			return $count;
 		}
 
-		public function editToDo($username, $id, $values) {
-			$x = 0;
-			foreach ($values as $key => $value) {
-				$query = $this->link->prepare("UPDATE todo SET $key = ? WHERE username = ? and id = ?");
-				$query->execute([$value, $username, $id]);
-				$x++;
-			}
-			return $x;
+		public function editToDo($username, $id, $title, $desc, $dueDate, $label, $progress) {
+			$query = $this->link->prepare("UPDATE todo SET `title` = ?, `description` = ?, `dueDate` = ?, `label` = ? `progress` = ? WHERE `username` = ? AND `id` = ?");
+			$values = array($title, $desc, $dueDate, $label, $progress, $username, $id);
+			$query->execute($values);
+			$count = $query->rowCount();
+			return $count;
 			
 		}
 
